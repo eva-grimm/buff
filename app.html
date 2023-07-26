@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
+    <!-- TO DO: Change name! -->
+    <title>App Name</title>
+
+    <!-- Favicon -->
+    <link rel="shortcut icon" href="/img/favicon.ico" type="image/x-icon">
+
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-9ndCyUaIbzAi2FUVXJi0CjmCapSmO7SnpJef0486qhLnuZ2cdeRhO02iuK6FUUVM" crossorigin="anonymous">
+
+    <!-- Boostrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <!-- Devicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.15.1/devicon.min.css">
+
+    <!-- Custom CSS -->
+    <link rel="stylesheet" href="/css/site.css">
+</head>
+
+<body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark">
+            <div class="container-fluid">
+                <a class="navbar-brand" href="/index.html">
+                    <img src="/img/Cadence-Eva-mark-transparent.png" width="30" alt="Cadence Eva Mark">
+                    <!-- TO DO: Change name! -->
+                    App Name
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                    aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarSupportedContent">
+                    <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                        <li class="nav-item">
+                            <a class="nav-link text-accent" href="/index.html">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-accent active" aria-current="page" href="/app.html">The App</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-accent" href="/code.html">The Code</a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- TO DO: Change to repo of app -->
+                            <a class="nav-link text-accent" href="https://github.com/eva-grimm">The Repo</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-accent" href="https://cadence-eva.netlify.app/">About</a>
+                        </li>
+                        <li class="nav-item">
+                            <!-- TO DO: Add link once blog is made -->
+                            <a class="nav-link text-accent" href="#">Blog</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>
+
+    <main class="container py-3">
+        <h1>APP UI GOES HERE</h1>
+        <input id="message" type="text" class="form-control" placeholder="Enter a message">
+        <button id="btn-submit" type="button" class="btn btn-primary my-3" onclick="displayMessage()">Display Message</button>
+    </main>
+
+    <footer class="footer container-fluid py-3">
+        <div class="container">
+            <div class="row row-cols-1 row-cols-lg-3 text-center align-items-center gy-2">
+                <div class="col text-lg-start">
+                    &copy2023 Cadence Eva Custin
+                </div>
+                <div class="col">
+                    <img src="img/Cadence-Eva-logo-transparent.png" width="300" alt="">
+                </div>
+                <div class="col text-lg-end">
+                    <a class="text-decoration-none" href="https://www.linkedin.com/in/cadence-eva-custin/">
+                        <i class="bi bi-linkedin social-icons"></i>
+                    </a>
+                    <a class="text-decoration-none" href="https://github.com/eva-grimm">
+                        <i class="bi bi-github social-icons"></i>
+                    </a>
+                    <a class="text-decoration-none" href="mailto:eva.custin@gmail.com">
+                        <i class="bi bi-envelope-at social-icons"></i>
+                    </a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
+        crossorigin="anonymous"></script>
+
+    <!-- Sweet Alerts -->
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    
+    <!-- Custom JS -->
+    <script src="/js/site.js"></script>
+
+    <script>
+        document.getElementById('btn-submit').addEventListener('click', displayMessage);
+    </script>
+</body>
+
+</html>

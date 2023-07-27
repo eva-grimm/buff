@@ -4,7 +4,6 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no">
-    <!-- TO DO: Change name! -->
     <title>Movie List</title>
 
     <!-- Favicon -->
@@ -24,7 +23,7 @@
     <link rel="stylesheet" href="/css/site.css">
 </head>
 
-<body>
+<body onload="displayMovies()">
     <header>
         <nav class="navbar navbar-expand-lg navbar-dark">
             <div class="container-fluid">
@@ -50,8 +49,7 @@
                             <a class="nav-link text-accent" href="/code.html">The Code</a>
                         </li>
                         <li class="nav-item">
-                            <!-- TO DO: Change to repo of app -->
-                            <a class="nav-link text-accent" href="https://github.com/eva-grimm">The Repo</a>
+                            <a class="nav-link text-accent" href="https://github.com/eva-grimm/movielist">The Repo</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link text-accent" href="https://cadence-eva.netlify.app/">About</a>
@@ -67,9 +65,9 @@
     </header>
 
     <main class="container py-3">
-        <button class="btn btn-primary" onclick="displayMovies()">Get Movies</button>
         <h1 class="display-3 text-center mt-5">Popular Movies</h1>
-        <div id="movie-list" class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 justify-content-center justify-content-xl-start">
+        <div id="movie-list"
+            class="row row-cols-1 row-cols-sm-2 row-cols-lg-3 row-cols-xl-4 g-3 justify-content-center justify-content-xl-start">
             <!-- cards go here -->
         </div>
     </main>
@@ -100,29 +98,87 @@
 
     <template id="movie-card-template">
         <div class="col">
-            <div class="card">
+            <div class="card h-100">
                 <img class="card-img-top" alt="Movie Poster">
                 <div class="card-body border-top bg-light">
                     <h5> <!-- movie title --> </h5>
                     <p class="card-text"> <!-- movie description --> </p>
                 </div>
                 <div class="card-footer text-end">
-                    <a href="#" class="btn btn-primary">More Info</a>
+                    <button class="btn btn-primary" data-bs-target="#movie-modal" data-bs-toggle="modal"
+                        onclick="showMovieDetails(this)">
+                        More Info
+                    </button>
                 </div>
             </div>
         </div>
     </template>
+
+    <template id="youtube-video">
+        <iframe class="yt-player-iframe" width="560" height="315" src="#" title="YouTube video player" frameborder="0"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen></iframe>
+    </template>
+
+    <div id="movie-modal" class="modal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-xl">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title fs-2 fw-bolder"></h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
+                        onclick="closePlayer()"></button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">
+                        <div class="col-12 col-lg-3">
+                            <img src="#" class="w-100" alt="Movie Poster">
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <hr class="d-lg-none">
+                            <p class="mb-1"><strong>Tagline</strong></p>
+                            <p class="movie-tagline movie-modal-text"></p>
+                            <hr>
+                            <p class="mb-1"><strong>Director(s)</strong></p>
+                            <p class="movie-director movie-modal-text"></p>
+                            <hr>
+                            <p class="mb-1"><strong>Writer(s)</strong></p>
+                            <p class="movie-writer movie-modal-text"></p>
+                            <hr>
+                            <p class="mb-1"><strong>Starring</strong></p>
+                            <p class="movie-stars movie-modal-text"></p>
+                            <hr>
+                            <p class="mb-1"><strong>Genres</strong></p>
+                            <p class="movie-genres movie-modal-text"></p>
+                        </div>
+                        <div class="col-12 col-lg-6">
+                            <p class="mb-1"><strong>Description</strong></p>
+                            <p class="movie-description movie-modal-text"></p>
+                            <hr>
+                            <p class="mb-1"><strong>Trailer</strong></p>
+                            <div class="movie-trailer">
+                                <!-- youtube embed goes here  -->
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                        onclick="closePlayer()">Close</button>
+                    <button type="button" class="btn btn-primary">Save changes</button>
+                </div>
+            </div>
+        </div>
+    </div>
 
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
         integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
         crossorigin="anonymous"></script>
 
-    <!-- Sweet Alerts -->
-    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-
     <!-- Custom JS -->
     <script src="/js/site.js"></script>
+
 </body>
 
 </html>

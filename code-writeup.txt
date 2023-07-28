@@ -1,0 +1,45 @@
+<p>This applet uses the API of TheMovieDB (TMDB) to populate a list of popular movies along with their posters, descriptions, and buttons to get more information. The applet is structured with two templates and one modal in the HTML, which are used and populated by four asynchronous functions and one standard function. Additionally, the constant API_KEY is declared outside of the functions and used by most of them. Let's dive in.</p>
+<h5>The templates</h5>
+<p>
+movie-card-template, the first template, creates a basic skeleton that will be used for each card on the applet page. Elements of the skeleton that will be filled with information are targeted by querySelector()s in the JavaScript functions that look for specific classes in the elements (e.g., card-text) or else the elements themselves. Additionally, the template includes a 'More Info' button that triggers both the modal appearing and showMovieDetails() using an onclick attribute.
+</p>
+<p>
+youtube-video, the second template, is used to set basic properties for YouTube videos of the trailers displayed in the modal. The source attribute is set to # and will be filled by the functions.
+</p>
+<h5>The modal</h5>
+<p>
+The modal is structured with three div tags into a header, body, and footer. The modal is enclosed in a template element because there will only ever be one modal displayed at a time. The content of the modal is  simply changed whenever the user clicks the 'More Info' button that triggers the modal.
+</p>
+<p>
+The header will display information like the title and also a button for closing the modal. The body will include the remainder of the information and is formatted using a row and three columns that are responsive. Finally, the footer contains only a button that closes the modal; no information regarding the movie is placed there.
+</p>
+<h5>The Movie Cards</h5>
+<p>The first two functions are related to the movie cards on the main applet page.</p>
+<h6>getMovies()</h6>
+<p>
+This asynchronous function is a try-catch that attempts to get the list of current popular movies from TMDB using API_KEY as authorization. If successful, the function receives a JSON it parses into an array of objects. It then assigns that array to 'movies' and returns the array to the function that called it, displayMovies() If an error is caught, it is logged.
+</p>
+<h6>displayMovies</h6>
+<p>
+This asynchronous function is called in the body of the applet using onLoad(). It begins by declaring two constants, movieListDiv and movieCardTemplate, which respectively refer to the div where the movies will be populated and the movie card template. It next gets the list of popular movies by calling getMovies() and assigning the returned array of objects to 'movies'.
+</p>
+<p>
+The remainder of the function is a foreach loop that runs an anonymous function with movies as a parameter. The anonymous function begins by cloning movieCardTemplate and assigning it to movieCard. It then populates movieCard using the properties of the current object from movies before using appendChild() to append movieCard to movieListDiv.
+</p>
+<h5>The Movie Modal</h5>
+<p>The next three functions are related to the modal displayed when the user clicks the 'More Info' button on the movie cards.</p>
+<h6>getMovie()</h6>
+<p>
+This asynchronous function begins by declaring a blank object, movie, then uses a try-catch to get three sets of information related to the movie from TMDB using API_KEY as authorization. The information sets it tries to obtain are the movie's details, credits, and trailer. If successfull, it receives JSONs for each information set that it parses into objects. It then assigns each object as a property of the movie object and returns that object to the function that called it, showMovieDetails(). If an error is caught, it is logged.
+</p>
+<h6>showMovieDetails</h6>
+<p>
+This asynchronous object begins by setting the constant, youtubeTemplate, to the youtube video template. It also sets the variable movie to the returned object of getMovie() and the variable movieModal to the movie modal. It then targets sections of the movie modal using querySelector()s and populates those sections with information contained within the movie object.
+</p>
+<p>
+Some information contained within the movie object must be formatted before before being placed into the modal. The release date is provided by TMDB in yyyy-mm-dd format and converted to mm/dd/yyyy format instead. The budget is provided an integer and is formatted using Intl.NumberFormat() into USD currency formatting. The credits property of movie contains everyone on the cast and crew, which is far too much. For the director(s) and writer(s), for-loops cycle through the crew list and check each person's job and ternary functions display only those people with the correct jobs. For the stars, a for-loop cycles through the first four actors to find their names and roles. Finally, TMDB has many videos to choose from, so a for-loop cycles through the available videos and uses a ternary function to only apply the official/main trailer video.
+</p>
+<h6>closePlayer()</h6>
+<p>
+The last function is a simple one that is called by the buttons in the modal that close the modal. This function resets the source attribute of the YouTube video for the trailer to blank, which prevents the trailer from continuing to play in the background once the modal is closed.
+</p>

@@ -115,7 +115,7 @@
     </template>
 
     <template id="youtube-video">
-        <iframe class="yt-player-iframe" width="560" height="315" src="#" title="YouTube video player" frameborder="0"
+        <iframe class="yt-player-iframe" src="#" title="YouTube video player" frameborder="0"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
             allowfullscreen></iframe>
     </template>
@@ -125,6 +125,7 @@
             <div class="modal-content">
                 <div class="modal-header">
                     <h5 class="modal-title fs-2 fw-bolder"></h5>
+                    <span class="movie-genres movie-modal-text ms-3"></span>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"
                         onclick="closePlayer()"></button>
                 </div>
@@ -132,6 +133,18 @@
                     <div class="row">
                         <div class="col-12 col-lg-3">
                             <img src="#" class="w-100" alt="Movie Poster">
+                            <p class="mb-1">
+                                <i class="bi bi-calendar me-1"></i>
+                                <strong>Released</strong>
+                            </p>
+                            <p class="movie-release movie-modal-text">
+
+                            </p>
+                            <p class="mb-1">
+                                <i class="bi bi-piggy-bank-fill me-1"></i>
+                                <strong>Budget</strong>
+                            </p>
+                            <p class="movie-budget movie-modal-text"></p>
                         </div>
                         <div class="col-12 col-lg-3">
                             <hr class="d-lg-none">
@@ -146,26 +159,19 @@
                             <hr>
                             <p class="mb-1"><strong>Starring</strong></p>
                             <p class="movie-stars movie-modal-text"></p>
-                            <hr>
-                            <p class="mb-1"><strong>Genres</strong></p>
-                            <p class="movie-genres movie-modal-text"></p>
                         </div>
                         <div class="col-12 col-lg-6">
-                            <p class="mb-1"><strong>Description</strong></p>
                             <p class="movie-description movie-modal-text"></p>
                             <hr>
-                            <p class="mb-1"><strong>Trailer</strong></p>
                             <div class="movie-trailer">
-                                <!-- youtube embed goes here  -->
                             </div>
                         </div>
                     </div>
 
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal"
+                    <button type="button" class="btn btn-primary" data-bs-dismiss="modal"
                         onclick="closePlayer()">Close</button>
-                    <button type="button" class="btn btn-primary">Save changes</button>
                 </div>
             </div>
         </div>

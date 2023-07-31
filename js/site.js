@@ -137,14 +137,14 @@ async function showMovieDetails(btn) {
     let director = movieModal.querySelector('.movie-director');
     let directorHtml = ''
     for (let i = 0; i < movie.credits.crew.length; i++) {
-        movie.credits.crew[i].job == 'Director' ? directorHtml += `${movie.credits.crew[i].name}` : '';
+        movie.credits.crew[i].job == 'Director' ? directorHtml += `${movie.credits.crew[i].name}<br>` : '';
     }
     director.innerHTML = directorHtml;
 
     let writer = movieModal.querySelector('.movie-writer');
     let writerHtml = ''
     for (let i = 0; i < movie.credits.crew.length; i++) {
-        movie.credits.crew[i].job == 'Screenplay' || movie.credits.crew[i].job == 'Writer' ? writerHtml += `${movie.credits.crew[i].name}` : '';
+        movie.credits.crew[i].job == 'Screenplay' || movie.credits.crew[i].job == 'Writer' ? writerHtml += `${movie.credits.crew[i].name}<br>` : '';
     }
     writer.innerHTML = writerHtml;
 

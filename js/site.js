@@ -44,6 +44,14 @@ async function displayMovies() {
 async function getMovie(movieId) {
     let movie = {}
     try {
+        // posters
+        let postersResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}/images`, {
+            headers: {
+                'Authorization': `Bearer ${API_KEY}`
+            }
+        });
+        movie.posters = await postersResponse.json();
+
         // details
         let detailsResponse = await fetch(`https://api.themoviedb.org/3/movie/${movieId}`, {
             headers: {
@@ -78,10 +86,10 @@ async function showMovieDetails(btn) {
     let movie = await getMovie(btn.getAttribute('data-movie-id'));
     let movieModal = document.getElementById('movie-modal')
 
+    // header
     let title = movieModal.querySelector('.modal-title');
     title.textContent = movie.details.title;
-
-    // header
+    
     let genres = movieModal.querySelector('.movie-genres');
     let genresHtml = '';
     for (let i = 0; i < movie.details.genres.length; i++) {
@@ -90,9 +98,24 @@ async function showMovieDetails(btn) {
     genres.innerHTML = genresHtml;
 
     // left column
-    let poster = movieModal.querySelector('img');
-    poster.setAttribute('src', `https://image.tmdb.org/t/p/w500${movie.details.poster_path}`);
+    let posters = document.getElementById('posters')
+    posters.innerHTML = '';
 
+    let primaryPosterTemplate = document.getElementById('primary-poster-template');
+    let primaryPosterDiv = primaryPosterTemplate.content.cloneNode(true);
+    let primaryPoster = primaryPosterDiv.querySelector('.poster-primary > img');
+    primaryPoster.setAttribute('src', `https://image.tmdb.org/t/p/w500${movie.posters.posters[0].file_path}`)
+    document.getElementById('posters').appendChild(primaryPosterDiv)
+
+    let secondaryPosterTemplate = document.getElementById('secondary-poster-template');
+    for (i = 1; i < movie.posters.posters.length; i++) {
+        let secondaryPosterDiv = secondaryPosterTemplate.content.cloneNode(true);
+        let secondaryPoster = secondaryPosterDiv.querySelector('.poster-secondary > img')
+        secondaryPoster.setAttribute('src', `https://image.tmdb.org/t/p/w500${movie.posters.posters[i].file_path}`)
+        document.getElementById('posters').appendChild(secondaryPosterDiv);
+    }
+    
+    // #region middle column
     let release = movieModal.querySelector('.movie-release');
     let releaseDateArry = `${movie.details.release_date}`.split('-');
     let releaseDate = `${releaseDateArry[1]}/${releaseDateArry[2]}/${releaseDateArry[0]}`;
@@ -104,10 +127,12 @@ async function showMovieDetails(btn) {
         currency: 'USD',
     });
     budget.textContent = budgetFormat.format(movie.details.budget);
-    
-    // middle column
-    let tagline = movieModal.querySelector('.movie-tagline');
-    tagline.textContent = movie.details.tagline;
+
+    let runtime = movieModal.querySelector('.movie-runtime');
+    let runtimeHours = `${Math.floor(movie.details.runtime / 60)}h`;
+    let runtimeMinutes = `${movie.details.runtime % 60}m`;
+    let runtimeFormatted = `${runtimeHours} ${runtimeMinutes}`;
+    runtime.textContent = runtimeFormatted;
 
     let director = movieModal.querySelector('.movie-director');
     let directorHtml = ''
@@ -126,11 +151,15 @@ async function showMovieDetails(btn) {
     let stars = movieModal.querySelector('.movie-stars');
     let starsHtml = '';
     for (let i = 0; i < 4; i++) {
-        starsHtml += `${movie.credits.cast[i].name}, ${movie.credits.cast[i].character}`
+        starsHtml += `${movie.credits.cast[i].name}, ${movie.credits.cast[i].character}<br>`
     }
     stars.innerHTML = starsHtml;
+    // #endregion middle column
 
-    // right column
+    // #region right column
+    let tagline = movieModal.querySelector('.movie-tagline');
+    tagline.textContent = movie.details.tagline;
+
     let desc = movieModal.querySelector('.movie-description');
     desc.textContent = movie.details.overview;
 
@@ -144,6 +173,7 @@ async function showMovieDetails(btn) {
     let youtubeEmbed = youtubeTemplate.content.cloneNode(true);
     youtubeEmbed.querySelector(`iframe`).setAttribute('src', trailerUrl);
     trailer.appendChild(youtubeEmbed);
+    // #endregion right column
 }
 
 function closePlayer() {

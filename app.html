@@ -119,6 +119,18 @@
             allowfullscreen></iframe>
     </template>
 
+    <template id="primary-poster-template">
+        <div class="carousel-item poster-primary active">
+            <img src="#" class="d-block w-100" alt="Primary Poster">
+          </div>
+    </template>
+
+    <template id="secondary-poster-template">
+        <div class="carousel-item poster-secondary">
+            <img src="#" class="d-block w-100" alt="Secondary Poster">
+          </div>
+    </template>
+
     <div id="movie-modal" class="modal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-xl">
             <div class="modal-content">
@@ -131,37 +143,59 @@
                 <div class="modal-body">
                     <div class="row">
                         <div class="col-12 col-lg-3">
-                            <img src="#" class="w-100" alt="Movie Poster">
+                            <div id="poster-carousel" class="carousel slide" data-bs-ride="carousel">
+                                <div id="posters" class="carousel-inner"></div>
+                                <button class="carousel-control-prev" type="button" data-bs-target="#poster-carousel" data-bs-slide="prev">
+                                  <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Previous</span>
+                                </button>
+                                <button class="carousel-control-next" type="button" data-bs-target="#poster-carousel" data-bs-slide="next">
+                                  <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                                  <span class="visually-hidden">Next</span>
+                                </button>
+                              </div>
+                        </div>
+                        <div class="col-12 col-lg-3">
+                            <hr class="d-lg-none">
                             <p class="mb-1">
-                                <i class="bi bi-calendar me-1"></i>
+                                <i class="bi bi-calendar-fill me-1"></i>
                                 <strong>Released</strong>
                             </p>
-                            <p class="movie-release movie-modal-text">
+                            <p class="movie-release movie-modal-text"></p>
 
-                            </p>
                             <p class="mb-1">
                                 <i class="bi bi-piggy-bank-fill me-1"></i>
                                 <strong>Budget</strong>
                             </p>
                             <p class="movie-budget movie-modal-text"></p>
-                        </div>
-                        <div class="col-12 col-lg-3">
-                            <hr class="d-lg-none">
-                            <p class="mb-1"><strong>Tagline</strong></p>
-                            <p class="movie-tagline movie-modal-text"></p>
-                            <hr>
-                            <p class="mb-1"><strong>Director(s)</strong></p>
+                            
+                            <p class="mb-1">
+                                <i class="bi bi-clock-fill me-1"></i>
+                                <strong>Runtime</strong>
+                            </p>
+                            <p class="movie-runtime movie-modal-text"></p>
+
+                            <p class="mb-1">
+                                <i class="bi bi-megaphone-fill"></i>
+                                <strong>Director(s)</strong>
+                            </p>
                             <p class="movie-director movie-modal-text"></p>
-                            <hr>
-                            <p class="mb-1"><strong>Writer(s)</strong></p>
+
+                            <p class="mb-1">
+                                <i class="bi bi-pen-fill"></i>
+                                <strong>Writer(s)</strong>
+                            </p>
                             <p class="movie-writer movie-modal-text"></p>
-                            <hr>
-                            <p class="mb-1"><strong>Starring</strong></p>
+
+                            <p class="mb-1">
+                                <i class="bi bi-star-fill"></i>
+                                <strong>Starring</strong>
+                            </p>
                             <p class="movie-stars movie-modal-text"></p>
                         </div>
                         <div class="col-12 col-lg-6">
+                            <p class="movie-tagline lead"></p>
                             <p class="movie-description movie-modal-text"></p>
-                            <hr>
                             <div class="movie-trailer">
                             </div>
                         </div>

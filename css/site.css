@@ -67,10 +67,6 @@ body {
     color: var(--ce-accent-250) !important;
 }
 
-.app-logo {
-    max-width: 400px;
-}
-
 .checklist i {
     color: var(--ce-accent-250);
     padding-right: .5rem;
